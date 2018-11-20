@@ -23,8 +23,58 @@ class App(QMainWindow):
         m = PlotCanvas(self, width=5, height=6)
         m.move(0, 0)
 
+        #button of the first query
+        button = QPushButton('Query 1', self)
+        button.move(10, 10)
+        button.resize(120, 50)
+
+        # button of the second query
+        button = QPushButton('Query 2', self)
+        button.move(10, 70)
+        button.resize(120, 50)
+
+        # button of the third query
+        button = QPushButton('Query 3', self)
+        button.move(10, 130)
+        button.resize(120, 50)
+
+        # button of the forth query
+        button = QPushButton('Query 4', self)
+        button.move(10, 190)
+        button.resize(120, 50)
+
+        # button of the fifth query
+        button = QPushButton('Query 5', self)
+        button.move(10, 250)
+        button.resize(120, 50)
+
+        # button of the sixth query
+        button = QPushButton('Query 6', self)
+        button.move(10, 310)
+        button.resize(120, 50)
+
+        # button of the seventh query
+        button = QPushButton('Query 7', self)
+        button.move(10, 370)
+        button.resize(120, 50)
+
+        # button of the eighth query
+        button = QPushButton('Query 8', self)
+        button.move(10, 430)
+        button.resize(120, 50)
+
+        # button of the ninth query
+        button = QPushButton('Query 9', self)
+        button.move(10, 490)
+        button.resize(120, 50)
+
+        # button of the tenth query
+        button = QPushButton('Query 10', self)
+        button.move(10, 550)
+        button.resize(120, 50)
+
         # connect button to function on_click
-        #button.clicked.connect(self.on_click)
+        button.clicked.connect(self.on_click)
 
         self.show()
 
