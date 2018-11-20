@@ -11,7 +11,7 @@ class App(QMainWindow):
         super().__init__()
         self.left = 10
         self.top = 10
-        self.title = 'Differential equation -y-x'
+        self.title = 'Car system queries'
         self.width = 720
         self.height = 640
         self.initUI()
