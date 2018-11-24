@@ -75,7 +75,7 @@ def query3():
 # query3()
 
 def query4():
-    for n in range (31):
+    for n in range(31):
         q4 = "SELECT * FROM Rent WHERE Username = %s AND Start_date = %s"
         N_days_ago = now - timedelta(days = n)
         N_days_ago = N_days_ago.strftime("%d-%m-%Y")
