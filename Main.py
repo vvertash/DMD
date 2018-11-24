@@ -33,6 +33,16 @@ class App(QMainWindow):
         button.move(10, 70)
         button.resize(120, 50)
 
+        # textbox for query 2
+        self.textbox2 = QLineEdit(self)
+        self.textbox2.move(150, 70)
+        self.textbox2.resize(120, 50)
+
+        # label for query 2
+        self.label2 = QLabel(self)
+        self.label2.setText("Write date in format dd-mm-yyyy")
+        self.label2.move(300, 70)
+
         # button of the third query
         button = QPushButton('Query 3', self)
         button.move(10, 130)
