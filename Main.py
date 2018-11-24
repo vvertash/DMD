@@ -28,20 +28,20 @@ class App(QMainWindow):
         button.move(10, 10)
         button.resize(120, 50)
 
+        # textbox for queries
+        self.textbox = QLineEdit(self)
+        self.textbox.move(150, 10)
+        self.textbox.resize(120, 50)
+
+        # label for textbox
+        self.label = QLabel(self)
+        self.label.setText("Write date in format dd-mm-yyyy")
+        self.label.move(290, 10)
+
         # button of the second query
         button = QPushButton('Query 2', self)
         button.move(10, 70)
         button.resize(120, 50)
-
-        # textbox for query 2
-        self.textbox2 = QLineEdit(self)
-        self.textbox2.move(150, 70)
-        self.textbox2.resize(120, 50)
-
-        # label for query 2
-        self.label2 = QLabel(self)
-        self.label2.setText("Write date in format dd-mm-yyyy")
-        self.label2.move(300, 70)
 
         # button of the third query
         button = QPushButton('Query 3', self)
@@ -57,16 +57,6 @@ class App(QMainWindow):
         button = QPushButton('Query 5', self)
         button.move(10, 250)
         button.resize(120, 50)
-
-        # textbox for query 5
-        self.textbox5 = QLineEdit(self)
-        self.textbox5.move(150, 250)
-        self.textbox5.resize(120, 50)
-
-        # label for query 5
-        self.label5 = QLabel(self)
-        self.label5.setText("Write date in format dd-mm-yyyy")
-        self.label5.move(300, 250)
 
         # button of the sixth query
         button = QPushButton('Query 6', self)
@@ -100,17 +90,11 @@ class App(QMainWindow):
 
     @pyqtSlot()
     def on_click(self):
-        '''x0 = float(self.textbox_x0.text())
-        y0 = float(self.textbox_y0.text())
-        x_max = int(self.textbox_x.text())
-        steps = int(self.textbox_x.text())
-        m = PlotCanvas(self, width=5, height=6, x_max=x_max, y0=y0, x0=x0)
-        m.move(0, 0)
-        m.show()'''
+        input_data = str(self.textbox.text())
 
 class PlotCanvas(FigureCanvas):
 
-    def __init__(self, parent=None, width=5, height=4, dpi=100, x_max=10, y0=1, x0=0, steps=30):
+    def __init__(self, parent=None, width=5, height=4, dpi=100, input_data="26-11-2018"):
         fig = Figure(figsize=(width, height), dpi=dpi)
 
         FigureCanvas.__init__(self, fig)
@@ -118,7 +102,6 @@ class PlotCanvas(FigureCanvas):
 
         FigureCanvas.setSizePolicy(self, QSizePolicy.Expanding, QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
-        #self.plot(x_max=x_max, x0=x0, y0=y0, steps=steps)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

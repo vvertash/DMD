@@ -23,9 +23,10 @@ def query1():
         print(i)
 #query1();
 
-def query2():
+def query2(input):
+    input = "21-11-2018"
     sql =  "SELECT * FROM Charge WHERE Date = %s"
-    mycursor.execute(sql, ("21-11-2018",))
+    mycursor.execute(sql, (input,))
     myresult = mycursor.fetchall()
     ans = [0] * 24
     for i in range (24):
@@ -98,7 +99,7 @@ def query4():
             print("Total price: " + str(date3*i[6]))
 # query4()
 
-def query5():
+def query5(input):
 
     input = "2018-11-10"
     inp_date = datetime.strptime(input, '%Y-%m-%d')
@@ -247,7 +248,7 @@ def query7():
     print("Cars to remove: " + str(dict(sorted_cars[0:to_trash])))
 # query7()
 
-def query8():
+def query8(input_date):
     input_date = "21-10-2018"
     input_date = datetime.strptime(input_date, '%d-%m-%Y')
     users = {}
