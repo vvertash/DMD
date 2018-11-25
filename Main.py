@@ -36,8 +36,11 @@ class App(QMainWindow):
 
         # label for textbox
         self.label = QLabel(self)
-        self.label.setText("Write date in format dd-mm-yyyy")
-        self.label.move(290, 10)
+        self.label.setText("Write data in format")
+        self.label.move(150, 70)
+        self.label = QLabel(self)
+        self.label.setText("dd-mm-yyyy")
+        self.label.move(150, 80)
 
         # button of the second query
         button2 = QPushButton('Query 2', self)
@@ -100,50 +103,71 @@ class App(QMainWindow):
 
     @pyqtSlot()
     def on_click1(self):
-        query1()
+        m = PlotCanvas(self, width=5, height=3, input_data=query1())
+        m.move(150, 120)
+        m.show()
+
 
     @pyqtSlot()
     def on_click2(self):
         input_data = str(self.textbox.text())
-        query2(input_data)
+        m = PlotCanvas(self, width=5, height=3, input_data=query2(input_data))
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click3(self):
-        query3()
+        m = PlotCanvas(self, width=5, height=3, input_data=query3())
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click4(self):
-        query4()
+        m = PlotCanvas(self, width=5, height=3, input_data=query4())
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click5(self):
         input_data = str(self.textbox.text())
-        query5(input_data)
+        m = PlotCanvas(self, width=5, height=3, input_data=query5(input_data))
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click6(self):
-        query6()
+        m = PlotCanvas(self, width=5, height=3, input_data=query6())
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click7(self):
-        query7()
+        m = PlotCanvas(self, width=5, height=3, input_data=query7())
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click8(self):
         input_data = str(self.textbox.text())
-        query8(input_data)
+        m = PlotCanvas(self, width=5, height=3, input_data=query8(input_data))
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click9(self):
-        query9()
+        m = PlotCanvas(self, width=5, height=3, input_data=query9())
+        m.move(150, 120)
+        m.show()
 
     @pyqtSlot()
     def on_click10(self):
-        query10()
+        m = PlotCanvas(self, width=5, height=3, input_data=query10())
+        m.move(150, 120)
+        m.show()
 
 class PlotCanvas(FigureCanvas):
 
-    def __init__(self, parent=None, width=5, height=4, dpi=100, input_data="26-11-2018"):
+    def __init__(self, parent=None, width=5, height=4, dpi=100, input_data="a"):
         fig = Figure(figsize=(width, height), dpi=dpi)
 
         FigureCanvas.__init__(self, fig)
@@ -151,6 +175,13 @@ class PlotCanvas(FigureCanvas):
 
         FigureCanvas.setSizePolicy(self, QSizePolicy.Expanding, QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
+        self.printer(input_data=input_data)
+
+    def printer(self, input_data="26-11-2018"):
+        # label for textbox
+        self.label = QLabel(self)
+        self.label.setText(input_data)
+        self.label.move(12, 12)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

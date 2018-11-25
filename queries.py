@@ -16,20 +16,28 @@ mydb = mysql.connector.connect(
     database="car_system"
 )
 mycursor = mydb.cursor()
+
+
+# first query
 def query1():
     mycursor.execute("SELECT * FROM Car WHERE Color = 'red' AND CID LIKE 'AN%'")
     myresult = mycursor.fetchall()
+    answer = ""
     for i in myresult:
-        print(i)
-#query1();
+        answer += str(i) + "\n"
 
+    # returning the result
+    return answer
+
+
+# second query
 def query2(input):
-    input = "21-11-2018"
-    sql =  "SELECT * FROM Charge WHERE Date = %s"
+    answer = ""
+    sql = "SELECT * FROM Charge WHERE Date = %s"
     mycursor.execute(sql, (input,))
     myresult = mycursor.fetchall()
     ans = [0] * 24
-    for i in range (24):
+    for i in range(24):
         if (i < 10):
             start = "0" + str(i) + ":00:00"
             if (i != 9):
@@ -43,11 +51,15 @@ def query2(input):
         for j in myresult:
             if (j[3] <= finish and j[4] >= start):
                 res += 1
-        print(str(i) + "h-" + str(i + 1) + "h: " + str(res))
+        answer += (str(i) + "h-" + str(i + 1) + "h: " + str(res) + "\n")
 
-# query2()
+    # returning the result
+    return answer
 
+
+# third query
 def query3():
+    answer = ""
     sql = "SELECT * FROM Rent ""WHERE (Start_date = %s OR Finish_date = %s) AND Finish_time >= %s AND Start_time <= %s "
     morning = set()
     afternoon = set()
@@ -70,12 +82,17 @@ def query3():
 
     mycursor.execute("SELECT * FROM Car")
     all = len(mycursor.fetchall())
-    print("Morning: " + str((int)((len(morning)/all)*100)))
-    print("Afternoon: " + str((int)((len(afternoon)/all)*100)))
-    print("Evening: " + str((int)((len(evening)/all)*100)))
-# query3()
+    answer += ("Morning: " + str((int)((len(morning)/all)*100)) + "\n")
+    answer += ("Afternoon: " + str((int)((len(afternoon)/all)*100)) + "\n")
+    answer += ("Evening: " + str((int)((len(evening)/all)*100)) + "\n")
 
+    # returning the result
+    return answer
+
+
+# forth query
 def query4():
+    answer = ""
     for n in range(31):
         q4 = "SELECT * FROM Rent WHERE Username = %s AND Start_date = %s"
         N_days_ago = now - timedelta(days = n)
@@ -95,13 +112,16 @@ def query4():
             else:
                 date3 = (int)(date3[0])
             for j in i:
-                print(j, end=" ")
-            print("Total price: " + str(date3*i[6]))
-# query4()
+                answer += (str(j)+ " ")
+            answer += ("Total price: " + str(date3*i[6]) + "\n")
 
+    # returning the result
+    return answer
+
+
+# fifth query
 def query5(input):
-
-    input = "2018-11-10"
+    answer = ""
     inp_date = datetime.strptime(input, '%Y-%m-%d')
     init = 1
 
@@ -111,7 +131,7 @@ def query5(input):
     day_count = 0
     while (inp_date < now):
         sql = "SELECT * FROM Rent WHERE Start_date = %s"
-        inp_date = inp_date + timedelta(days = init)
+        inp_date = inp_date + timedelta(days=init)
         inp_date1 = inp_date.strftime("%d-%m-%Y")
         mycursor.execute(sql, (inp_date1, ))
         result = mycursor.fetchall()
@@ -148,14 +168,20 @@ def query5(input):
             a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
             c = 2 * atan2(sqrt(a), sqrt(1 - a))
             distance += R * c
-            print(R*c)
+            answer += str(R*c) + "\n"
         day_count += 1
 
-    print((float)(duration)/(float)(counter))
-    print (distance/day_count)
-# query5()
+    answer += (str((float)(duration)/(float)(counter)) + "\n")
+    answer += str(distance/day_count)
 
+    # returning the result
+    return answer
+
+
+# sixth query
 def query6():
+    answer = ""
+
     mycursor.execute("SELECT * FROM CC_Order WHERE Order_time BETWEEN '07:00:00' AND '10:00:00'")
 
     myresult = mycursor.fetchall()
@@ -216,18 +242,22 @@ def query6():
     evening1 = sorted(evening_pick_up.items(), key=operator.itemgetter(1))
     evening2 = sorted(evening_dest.items(),key=operator.itemgetter(1))
 
-    print(morning1[len(morning_pick_up) - 1][0])
-    print(morning2[len(morning_dest) - 1][0])
+    answer += (str(morning1[len(morning_pick_up) - 1][0]) + "\n")
+    answer += (str(morning2[len(morning_dest) - 1][0]) + "\n")
 
-    print(afternoon1[len(afternoon_pick_up) - 1][0])
-    print(afternoon2[len(afternoon_dest) - 1][0])
+    answer += (str(afternoon1[len(afternoon_pick_up) - 1][0]) + "\n")
+    answer += (str(afternoon2[len(afternoon_dest) - 1][0]) + "\n")
 
-    print(evening1[len(evening_pick_up) - 1][0])
-    print(evening2[len(evening_dest) - 1][0])
-# query6()
+    answer += (str(evening1[len(evening_pick_up) - 1][0]) + "\n")
+    answer += (str(evening2[len(evening_dest) - 1][0]) + "\n")
+
+    # returning the result
+    return answer
 
 
+# seventh query
 def query7():
+    answer = ""
     mycursor.execute("SELECT * FROM Car")
     cars = {}
     allcars = mycursor.fetchall()
@@ -244,19 +274,23 @@ def query7():
             cars[j[1]] += 1
     sorted_cars = sorted(cars.items(), key=operator.itemgetter(1))
     to_trash = math.ceil((float)(len(allcars))/10)
-    print("All cars with orders: " + str(dict(sorted_cars)))
-    print("Cars to remove: " + str(dict(sorted_cars[0:to_trash])))
-# query7()
+    answer += ("All cars with orders: " + str(dict(sorted_cars)) + "\n")
+    answer += ("Cars to remove: " + str(dict(sorted_cars[0:to_trash])) + "\n")
 
-def query8(input_date):
-    input_date = "21-10-2018"
-    input_date = datetime.strptime(input_date, '%d-%m-%Y')
+    # returning the result
+    return answer
+
+
+# eighth query
+def query8(input):
+    answer = ""
+    input = datetime.strptime(input, '%d-%m-%Y')
     users = {}
     us = {}
     usr_set = set()
     # cars
     for i in range(31):
-        month_later = input_date + timedelta(days=i)
+        month_later = input + timedelta(days=i)
         month_later = month_later.strftime("%d-%m-%Y")
         sql = "SELECT * FROM Rent WHERE Start_date = %s"
         mycursor.execute(sql,(month_later, ))
@@ -289,8 +323,12 @@ def query8(input_date):
                 ans[name] += cnt
             else:
                 ans[name] = cnt
-    print(ans)
-query8()
+
+    # writing the result
+    answer = str(ans)
+
+    # returning the result
+    return answer
 
 
 def earlier(s1, s2):
@@ -309,7 +347,10 @@ def earlier(s1, s2):
     else:
         return False
 
+
+# ninth query
 def query9():
+    answer = ""
     ans = {}
     first_date = ""
     mycursor.execute("SELECT WID FROM Workshop")
@@ -348,10 +389,16 @@ def query9():
     for item in ans:
         i = ans[item]
         num = math.ceil((float)(i[1]) / (float)(weeks))
-        print("Workshop № " + str(item) + " most often requires " + i[0] + " (about " + str(num) + " every week on average).")
-# query9()
+        answer += ("Workshop № " + str(item) + " most often requires " + i[0] +
+                   " (about " + str(num) + " every week on average)." + "\n")
 
+    # returning the result
+    return answer
+
+
+# tenth query
 def query10():
+    answer = ""
     mycursor.execute("SELECT * FROM Repair")
     result = mycursor.fetchall()
     car_type = {}
@@ -369,7 +416,9 @@ def query10():
     new_date = new_date.split(" ")
     sorted_models = sorted(car_type.items(), key=operator.itemgetter(1))
     sorted_models = sorted_models[len(car_type) - 1]
-    print("The most expensive model: " + sorted_models[0])
-    print("Average(per day) cost of repairs: " + str(sorted_models[1] / (int)(new_date[0])))
-# query10()
+    answer += ("The most expensive model: " + str(sorted_models[0]) + "\n")
+    answer += ("Average(per day) cost of repairs: " + str(sorted_models[1] / (int)(new_date[0])) + "\n")
+
+    # returning the result
+    return answer
 
