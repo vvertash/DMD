@@ -122,7 +122,7 @@ def query4():
 # fifth query
 def query5(input):
     answer = ""
-    inp_date = datetime.strptime(input, '%Y-%m-%d')
+    inp_date = datetime.strptime(input, '%d-%m-%Y')
     init = 1
 
     duration = 0
