@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QSizePolicy, QPushButton,
 from PyQt5.QtCore import pyqtSlot
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
+from queries import *
 
 
 class App(QMainWindow):
@@ -24,9 +25,9 @@ class App(QMainWindow):
         m.move(0, 0)
 
         #button of the first query
-        button = QPushButton('Query 1', self)
-        button.move(10, 10)
-        button.resize(120, 50)
+        button1 = QPushButton('Query 1', self)
+        button1.move(10, 10)
+        button1.resize(120, 50)
 
         # textbox for queries
         self.textbox = QLineEdit(self)
@@ -39,58 +40,106 @@ class App(QMainWindow):
         self.label.move(290, 10)
 
         # button of the second query
-        button = QPushButton('Query 2', self)
-        button.move(10, 70)
-        button.resize(120, 50)
+        button2 = QPushButton('Query 2', self)
+        button2.move(10, 70)
+        button2.resize(120, 50)
 
         # button of the third query
-        button = QPushButton('Query 3', self)
-        button.move(10, 130)
-        button.resize(120, 50)
+        button3 = QPushButton('Query 3', self)
+        button3.move(10, 130)
+        button3.resize(120, 50)
 
         # button of the forth query
-        button = QPushButton('Query 4', self)
-        button.move(10, 190)
-        button.resize(120, 50)
+        button4 = QPushButton('Query 4', self)
+        button4.move(10, 190)
+        button4.resize(120, 50)
 
         # button of the fifth query
-        button = QPushButton('Query 5', self)
-        button.move(10, 250)
-        button.resize(120, 50)
+        button5 = QPushButton('Query 5', self)
+        button5.move(10, 250)
+        button5.resize(120, 50)
 
         # button of the sixth query
-        button = QPushButton('Query 6', self)
-        button.move(10, 310)
-        button.resize(120, 50)
+        button6 = QPushButton('Query 6', self)
+        button6.move(10, 310)
+        button6.resize(120, 50)
 
         # button of the seventh query
-        button = QPushButton('Query 7', self)
-        button.move(10, 370)
-        button.resize(120, 50)
+        button7 = QPushButton('Query 7', self)
+        button7.move(10, 370)
+        button7.resize(120, 50)
 
         # button of the eighth query
-        button = QPushButton('Query 8', self)
-        button.move(10, 430)
-        button.resize(120, 50)
+        button8 = QPushButton('Query 8', self)
+        button8.move(10, 430)
+        button8.resize(120, 50)
 
         # button of the ninth query
-        button = QPushButton('Query 9', self)
-        button.move(10, 490)
-        button.resize(120, 50)
+        button9 = QPushButton('Query 9', self)
+        button9.move(10, 490)
+        button9.resize(120, 50)
 
         # button of the tenth query
-        button = QPushButton('Query 10', self)
-        button.move(10, 550)
-        button.resize(120, 50)
+        button10 = QPushButton('Query 10', self)
+        button10.move(10, 550)
+        button10.resize(120, 50)
 
         # connect button to function on_click
-        button.clicked.connect(self.on_click)
+        button1.clicked.connect(self.on_click1)
+        button2.clicked.connect(self.on_click2)
+        button3.clicked.connect(self.on_click3)
+        button4.clicked.connect(self.on_click4)
+        button5.clicked.connect(self.on_click5)
+        button6.clicked.connect(self.on_click6)
+        button7.clicked.connect(self.on_click7)
+        button8.clicked.connect(self.on_click8)
+        button9.clicked.connect(self.on_click9)
+        button10.clicked.connect(self.on_click10)
 
         self.show()
 
     @pyqtSlot()
-    def on_click(self):
+    def on_click1(self):
+        query1()
+
+    @pyqtSlot()
+    def on_click2(self):
         input_data = str(self.textbox.text())
+        query2(input_data)
+
+    @pyqtSlot()
+    def on_click3(self):
+        query3()
+
+    @pyqtSlot()
+    def on_click4(self):
+        query4()
+
+    @pyqtSlot()
+    def on_click5(self):
+        input_data = str(self.textbox.text())
+        query5(input_data)
+
+    @pyqtSlot()
+    def on_click6(self):
+        query6()
+
+    @pyqtSlot()
+    def on_click7(self):
+        query7()
+
+    @pyqtSlot()
+    def on_click8(self):
+        input_data = str(self.textbox.text())
+        query8(input_data)
+
+    @pyqtSlot()
+    def on_click9(self):
+        query9()
+
+    @pyqtSlot()
+    def on_click10(self):
+        query10()
 
 class PlotCanvas(FigureCanvas):
 
