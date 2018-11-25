@@ -123,7 +123,7 @@ def query4():
 def query5(input):
     answer = ""
     inp_date = datetime.strptime(input, '%d-%m-%Y')
-    init = 1
+    init = 0
 
     duration = 0
     counter = 0
@@ -132,6 +132,7 @@ def query5(input):
     while (inp_date < now):
         sql = "SELECT * FROM Rent WHERE Start_date = %s"
         inp_date = inp_date + timedelta(days=init)
+        init += 1
         inp_date1 = inp_date.strftime("%d-%m-%Y")
         mycursor.execute(sql, (inp_date1, ))
         result = mycursor.fetchall()
@@ -171,8 +172,11 @@ def query5(input):
             answer += str(R*c) + "\n"
         day_count += 1
 
-    answer += (str((float)(duration)/(float)(counter)) + "\n")
-    answer += str(distance/day_count)
+    if counter == 0:
+        answer = "No orders after this date"
+    else:
+        answer += (str((float)(duration)/(float)(counter)) + "\n")
+        answer += str(distance/day_count)
 
     # returning the result
     return answer
